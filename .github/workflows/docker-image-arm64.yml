@@ -10,13 +10,16 @@ jobs:
 
   build-and-push:
 
-    runs-on: Linux/arm64
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ arm64 ]
 
     steps:
     - uses: actions/checkout@v3
 
     - name: Log in to Docker Hub
-      uses: docker/login-action@v3
+      uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
