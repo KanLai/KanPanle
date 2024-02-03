@@ -5,7 +5,7 @@
 2. unzip 1.0.0.zip
 3. cd KanPanle-1.0.0
 4. docker build -t kanlai/panle -f WebApplication1/Dockerfile-amd64 . (根据自己机器选择)
-5. docker run -d --name=kanlai-panle --restart=always -p 8080:8080
+5. docker run -d --name=kanlai-panle --restart=always -p 8080:8080 kanlai/panle
 6. 清理打包产生的镜像和垃圾。docker system prune -a -f 注意会删除所有未使用的镜像和容器 网络等
 7. 访问http://ip:8080
 8. 默认账号密码：admin/123456
