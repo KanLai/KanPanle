@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using SignalRWebpack.Hubs;
 using WebApplication1;
 
-
 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 const string hup = "/hub";
 Console.ForegroundColor = ConsoleColor.DarkMagenta;
