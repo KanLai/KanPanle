@@ -21,10 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\upload\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="Common\AsyncConfiguration.cs" />
     </ItemGroup>
 

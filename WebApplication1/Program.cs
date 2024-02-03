@@ -14,7 +14,7 @@ Console.WriteLine("服务正在启动...");
 var options = new WebApplicationOptions
 {
     Args = args,
-    WebRootPath = $"{baseDirectory}/wwwroot",
+    WebRootPath = $"{baseDirectory}wwwroot",
 };
 Console.WriteLine("网站目录 -> " + options.WebRootPath);
 var builder = WebApplication.CreateBuilder(options);
