@@ -24,11 +24,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        file: WebApplication1/Dockerfile-arm64
-        push: true
-        tags: kanlai/kanpanle:arm64
-        platforms: linux/arm64
+    - name: Build and push Docker image
+      run: |
+        docker build . --file WebApplication1/Dockerfile-arm64 --tag kanlai/kanpanle:arm64
+        docker push kanlai/kanpanle:arm64
