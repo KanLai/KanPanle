@@ -23,5 +23,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build . --file WebApplication1/Dockerfile --tag kanlai/kanpanle:last
-          docker push kanlai/kanpanle:last
+          docker build . --file WebApplication1/Dockerfile --tag kanlai/kanpanle:latest
+          docker push kanlai/kanpanle:latest
