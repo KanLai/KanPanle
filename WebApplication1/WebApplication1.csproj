@@ -24,4 +24,13 @@
       <Compile Remove="Common\AsyncConfiguration.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\assets\index-rK6wBSwR.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\index-VNLGiROv.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\LoginView-IP_SGHHa.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\LoginView-w53kfCSF.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\UserView-dboRw_6W.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\UserView-vFwL0Gl9.css" />
+    </ItemGroup>
+
 </Project>
