@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Attrs;
@@ -124,5 +125,30 @@ public class Home(ApplicationDbContext db, CachedConfigService cachedConfigServi
                 });
             }
         }
+    }
+
+    [AllowAnonymous]
+    [HttpGet("getBg")]
+    public IActionResult getBg()
+    {
+        var url = cachedConfigService.Get<string>("background");
+        var containsHttp = url.Contains("http://");
+        var containsHttps = url.Contains("https://");
+        if (containsHttp || containsHttps)
+        {
+            return Ok(new Json<string>()
+            {
+                code = 1,
+                message = "获取成功",
+                data = url,
+            });
+        }
+
+        return Ok(new Json<string>()
+        {
+            code = 1,
+            message = "获取成功",
+            data = cachedConfigService.Get<string>("baseUrl") + url,
+        });
     }
 }

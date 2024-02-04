@@ -81,7 +81,7 @@ public class AsyncAuthorizationFilter(ApiConfiguration configuration) : IAsyncAu
         }
         catch (Exception e)
         {
-            throw new Exception(e.Message);
+            throw new Exception("AsyncAuthorizationFilter Error", e);
         }
     }
 

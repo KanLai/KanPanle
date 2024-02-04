@@ -62,7 +62,7 @@ public class Auth(
     [HttpGet("sign")]
     [AuthorizationMessage("请先登录")]
     [ServiceFilter(typeof(AsyncAuthorizationFilter))]
-    public IActionResult Sign()
+    public IActionResult Sign(CachedConfigService cachedConfigService)
     {
         HttpContext.Items.TryGetValue("User", out var user);
         if (user is not User userData)
@@ -70,11 +70,23 @@ public class Auth(
             return new UnauthorizedResult();
         }
 
+        var url = cachedConfigService.Get<string>("background");
+        var containsHttp = url.Contains("http://");
+        var containsHttps = url.Contains("https://");
+        if (!containsHttps && !containsHttp)
+        {
+            url = cachedConfigService.Get<string>("baseUrl") + url;
+        }
+
         return Ok(new Json<object>()
         {
             code = 1,
             message = "登录成功",
-            data = UserDto.From(userData, configService),
+            data = new
+            {
+                bg = url,
+                member = UserDto.From(userData, configService)
+            },
         });
     }
 
@@ -99,7 +111,7 @@ public class Auth(
     {
         applicationDbContext.Configs.SingleOrDefault(e => e.key == config.key)!.val = config.val;
         applicationDbContext.SaveChanges();
-        configService.Set(config.key, config.val!);
+        configService.Set(config.key, config.val);
         return Ok(new Json<object>()
         {
             code = 1,

@@ -5,6 +5,14 @@ public class ApiResponseMiddleware(RequestDelegate next)
 {
     public async Task InvokeAsync(HttpContext context)
     {
+        context.Response.OnStarting(() =>
+        {
+            context.Response.Headers["Server"] = "www.kanlai.com.cn";
+            context.Response.Headers["Author"] = "admin@kanlai.com.cn";
+            context.Response.Headers["qq"] = "380943047";
+            return Task.CompletedTask;
+        });
+
         try
         {
             await next(context);
